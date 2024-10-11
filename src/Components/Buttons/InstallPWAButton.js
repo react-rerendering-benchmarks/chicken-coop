@@ -1,42 +1,31 @@
+import { useRef } from "react";
+import { memo } from "react";
 import React, { useEffect, useState } from "react";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
-
-const InstallPWAButton = () => {
-  const [supportsPWA, setSupportsPWA] = useState(false);
-  const [promptInstall, setPromptInstall] = useState(null);
-
+const InstallPWAButton = memo(() => {
+  const supportsPWA = useRef(false);
+  const promptInstall = useRef(null);
   useEffect(() => {
-    const handler = (e) => {
+    const handler = e => {
       e.preventDefault();
-      setSupportsPWA(true);
-      setPromptInstall(e);
+      supportsPWA.current = true;
+      promptInstall.current = e;
     };
     window.addEventListener("beforeinstallprompt", handler);
-
     return () => window.removeEventListener("transitionend", handler);
   }, []);
-
-  const onClick = (evt) => {
+  const onClick = evt => {
     evt.preventDefault();
-    if (!promptInstall) {
+    if (!promptInstall.current) {
       return;
     }
-    promptInstall.prompt();
+    promptInstall.current.prompt();
   };
-  if (!supportsPWA) {
+  if (!supportsPWA.current) {
     return null;
   }
-  return (
-    <button
-      className="icon"
-      id="setup_button"
-      aria-label="Install app"
-      title="Install app"
-      onClick={onClick}
-    >
+  return <button className="icon" id="setup_button" aria-label="Install app" title="Install app" onClick={onClick}>
       <ArrowDownTrayIcon className="w-5 h-5" />
-    </button>
-  );
-};
-
+    </button>;
+});
 export default InstallPWAButton;
