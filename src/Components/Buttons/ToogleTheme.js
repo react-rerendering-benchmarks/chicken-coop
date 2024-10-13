@@ -2,6 +2,7 @@ import { memo } from "react";
 import { useTheme } from "next-themes";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 export default memo(function ToggleTheme() {
+  console.log(window.globalCount++);
   const {
     theme,
     setTheme

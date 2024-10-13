@@ -7,6 +7,7 @@ import chickenCoopLogo from "../../assets/images/logo.png";
 import InstallPWAButton from "../../Components/Buttons/InstallPWAButton";
 import ToggleTheme from "../../Components/Buttons/ToogleTheme";
 const Home = memo(() => {
+  console.log(window.globalCount++);
   const [gitStars, setGitStars] = useState(0);
   useEffect(() => {
     fetch("https://api.github.com/repos/mahadihassanriyadh/chicken-coop").then(res => res.json()).then(data => setGitStars(data.stargazers_count));

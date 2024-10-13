@@ -3,6 +3,7 @@ import { memo } from "react";
 import React, { useEffect, useState } from "react";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 const InstallPWAButton = memo(() => {
+  console.log(window.globalCount++);
   const supportsPWA = useRef(false);
   const promptInstall = useRef(null);
   useEffect(() => {
