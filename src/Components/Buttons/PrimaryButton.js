@@ -1,11 +1,8 @@
 import React from "react";
-
-const PrimaryButton = (props) => {
-  return (
-    <button {...props} className={props.className + " btn"}>
+const PrimaryButton = props => {
+  console.log(window.globalCount++);
+  return <button {...props} className={props.className + " btn"}>
       {props?.label}
-    </button>
-  );
+    </button>;
 };
-
 export default PrimaryButton;
