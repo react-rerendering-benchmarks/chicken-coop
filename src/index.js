@@ -15,4 +15,4 @@ root.render(<React.StrictMode>
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-window.globalCount = 0;
+window.globalCount = window.globalCount || 0;
